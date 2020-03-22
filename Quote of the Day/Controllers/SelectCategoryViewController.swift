@@ -68,7 +68,3 @@ class SelectCategoryViewController: UIViewController {
 	}
 
 }
-
-protocol selectCategoryViewControllerDelegate: class {
-	
-}

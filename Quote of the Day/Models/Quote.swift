@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Quote: Decodable {
+struct Quote: Decodable, Hashable {
 	let id: String
 	let quote: String
 	let length: String?
@@ -17,6 +17,12 @@ struct Quote: Decodable {
 	let date: String
 	let title: String?
 	let background: URL?
+	let favorited: Bool?
+	
+	func hash(into hasher: inout Hasher) {
+		hasher.combine(id)
+	}
+
 }
 
 struct Root: Decodable {
@@ -50,7 +56,7 @@ extension Category: CustomStringConvertible {
 		case .life:
 			return "Life"
 		case .funny:
-			return "Humor"
+			return "Humorous"
 		case .love:
 			return "Love"
 		case .art:
@@ -60,4 +66,3 @@ extension Category: CustomStringConvertible {
 		}
 	}
 }
-

@@ -10,13 +10,7 @@ import UIKit
 
 class SettingsView: UIView {
 
-    let cardView: UIView = {
-		let view = UIView()
-		view.backgroundColor = .systemBackground
-		view.layer.cornerRadius = 30
-		
-		return view
-	}()
+    let cardView = CardView()
 	
 	let scrollView: UIScrollView = {
 		let view = UIScrollView()

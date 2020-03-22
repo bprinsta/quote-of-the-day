@@ -7,14 +7,26 @@
 //
 
 import UIKit
+import CoreData
 
 class MainTabBarController: UITabBarController {
 
+	var container: NSPersistentContainer!
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		
+//		guard container != nil else {
+//            fatalError("This view needs a persistent container.")
+//        }
+		
 		UITabBar.appearance().tintColor = Constants.accentColor
-		self.viewControllers = [createQuoteViewController(), createFavoritesViewController(), createCalenderViewController(), createSettingsViewController()]
+		
+		let quoteVC = createQuoteViewController()
+		let favoritesVC = createFavoritesViewController()
+		quoteVC.favoriteDelegate = favoritesVC
+		
+		self.viewControllers = [quoteVC, favoritesVC, createSettingsViewController()]
     }
 	
 	func createQuoteViewController() -> QuoteViewController {

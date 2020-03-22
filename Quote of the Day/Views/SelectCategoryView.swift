@@ -13,7 +13,7 @@ class SelectCategoryView: UIView {
 	var titleLabel: UILabel = {
 		let label = UILabel()
 		label.text = "Categories"
-		label.textColor = .systemGray
+		label.textColor = .black
 		label.textAlignment = .center
 		
 		label.font = UIFont(name: "AvenirNext-Medium", size: 24)

@@ -10,14 +10,19 @@ import UIKit
 
 class QuoteView: UIView {
 	
+	var quote: Quote? {
+		didSet {
+			if let quote = quote {
+				quoteLabel.text = quote.quote
+				authorLabel.text = "- \(quote.author ?? "")"
+				dateLabel.text = formatDate(dateString: quote.date)
+				categoryLabel.text = "\(String(describing: quote.category))"
+			}
+		}
+	}
+	
 	// MARK: View Creation
-	let cardView: UIView = {
-		let view = UIView()
-		view.backgroundColor = .systemBackground
-		view.layer.cornerRadius = 30
-		
-		return view
-	}()
+	let cardView = CardView()
 	
 	var dateLabel: UILabel = {
 		let label = UILabel()
@@ -28,14 +33,7 @@ class QuoteView: UIView {
 		return label
 	}()
 	
-	let logoLabel: UIImageView = {
-		let image = UIImage(named: "app_title") as UIImage?
-		let imageView = UIImageView(image: image)
-		imageView.contentMode = .scaleAspectFit
-		imageView.setImageColor(color: .systemGray)
-		
-		return imageView
-	}()
+	let logoImageView = LogoImageView(frame: .zero)
 	
 	var categoryLabel: UILabel = {
 		let label = UILabel()
@@ -73,24 +71,9 @@ class QuoteView: UIView {
 		return button
 	}()
 	
-	var shareButton: UIButton = {
-		let image = #imageLiteral(resourceName: "icons8-share-rounded-30")
-		let button = UIButton(type: UIButton.ButtonType.custom) as UIButton
-		button.frame = CGRect(x: 100, y: 100, width: 100, height: 100)
-		button.setImage(image, for: UIControl.State.normal)
-		button.setImageColor(color: Constants.accentColor)
-		
-		return button
-	}()
+	var shareButton = ShareButton()
 	
-	var favoriteButton: ToggleButton = {
-		let favoriteIcon = #imageLiteral(resourceName: "icons8-heart-24")
-		let button = ToggleButton()
-		button.frame = CGRect(x: 100, y: 100, width: 100, height: 100)
-		button.setImage(favoriteIcon, for: UIControl.State.normal)
-		button.setImageColor(color: Constants.accentColor)
-		return button
-	}()
+	var favoriteButton = FavoriteButton()
 	
 	var categoryButton: UIButton = {
 		let categoryIcon = #imageLiteral(resourceName: "icons8-squared-menu-50")
@@ -120,7 +103,7 @@ class QuoteView: UIView {
 	func addSubviews(){
 		self.addSubview(cardView)
 		self.addSubview(dateLabel)
-		self.addSubview(logoLabel)
+		self.addSubview(logoImageView)
 		self.addSubview(categoryLabel)
 		self.addSubview(quoteLabel)
 		self.addSubview(authorLabel)
@@ -135,7 +118,7 @@ class QuoteView: UIView {
 		
 		dateLabel.anchor(top: cardView.topAnchor, leading: cardView.leadingAnchor, bottom: nil, trailing: cardView.trailingAnchor, padding: .init(top: 16, left: 32, bottom: 0, right: 32))
 		
-		logoLabel.anchor(top: cardView.topAnchor, leading: nil, bottom: nil, trailing: cardView.trailingAnchor, padding: .init(top: 17, left: 0, bottom: 0, right: 32), size: .init(width: 90, height: 16))
+		logoImageView.anchor(top: cardView.topAnchor, leading: nil, bottom: nil, trailing: cardView.trailingAnchor, padding: .init(top: 17, left: 0, bottom: 0, right: 32), size: .init(width: 90, height: 16))
 		
 		categoryLabel.anchor(top: dateLabel.bottomAnchor, leading: cardView.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 48, left: 32, bottom: 0, right: 0))
 		
@@ -151,16 +134,20 @@ class QuoteView: UIView {
 		
 		categoryButton.anchor(top: nil, leading: cardView.leadingAnchor, bottom: cardView.bottomAnchor, trailing: nil, padding: .init(top: 0, left: 24, bottom: 24, right: 0), size: .init(width: 28, height: 28))
 	}
-	
-	func toggleFavoriteButton() {
-		if favoriteButton.isOn {
-			favoriteButton.setImage(#imageLiteral(resourceName: "icons8-heart-24"), for: UIControl.State.normal)
-			favoriteButton.setImageColor(color: Constants.accentColor)
-			favoriteButton.isOn = false
+}
+
+private extension QuoteView {
+	func formatDate(dateString: String) -> String {
+		let dateFormatterGet = DateFormatter()
+		dateFormatterGet.dateFormat = "yyyy-MM-dd"
+		
+		let dateFormatterPrint = DateFormatter()
+		dateFormatterPrint.dateFormat = "dd MMM yyyy"
+		
+		if let date = dateFormatterGet.date(from: dateString) {
+			return dateFormatterPrint.string(from: date)
 		} else {
-			favoriteButton.setImage(#imageLiteral(resourceName: "icons8-heart-fill-24"), for: UIControl.State.normal)
-			favoriteButton.setImageColor(color: Constants.accentColor)
-			favoriteButton.isOn = true
+			return dateString
 		}
 	}
 }

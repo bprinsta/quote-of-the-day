@@ -18,5 +18,5 @@ struct Constants {
 	static let backgroundColor = blue
 	static let accentColor = darkBlue
 	
-	static let dummyQuote = Quote(id: "000", quote: "If we’re not stretching, we’re not growing. If we’re not growing, we’re probably not fulfilling our potential. The only person in this room that knows your potential is you.", length: "173", author: "Kevin Turner", category: Category.inspire, date: "14 Feb 2020",title: nil, background: nil)
+	static let dummyQuote = Quote(id: "000", quote: "If we’re not stretching, we’re not growing. If we’re not growing, we’re probably not fulfilling our potential. The only person in this room that knows your potential is you.", length: "173", author: "Kevin Turner", category: Category.inspire, date: "14 Feb 2020",title: nil, background: nil, favorited: nil)
 }

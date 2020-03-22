@@ -9,21 +9,30 @@
 import UIKit
 import WebKit
 
+protocol FavoriteDelegate {
+	
+	func addFavorite(_ quote: Quote)
+	
+	func removeFavorite(_ quote: Quote)
+}
+
 class QuoteViewController: UIViewController {
 	
 	var quoteView = QuoteView()
 		
 	var quote: Quote = Constants.dummyQuote {
 		didSet {
-			configureQuoteView()
+			quoteView.quote = quote
 		}
 	}
 	
-	var selectedCategory = Category.love {
+	var selectedCategory = Category.inspire {
 		didSet {
 			fetchQuote()
 		}
 	}
+	
+	var favoriteDelegate: FavoriteDelegate!
 	
 	var webViewController = UIViewController()
 	
@@ -33,12 +42,13 @@ class QuoteViewController: UIViewController {
 		view = quoteView
 		
 		fetchQuote()
-		configureQuoteView()
+		quoteView.quote = quote
 		configureButtons()
 	}
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+		
 	}
 	
 	fileprivate func fetchQuote() {
@@ -68,13 +78,22 @@ class QuoteViewController: UIViewController {
 	}
 	
 	@objc func shareButtonClicked() {
-		let textToShare = "Quote of the Day:\n\"\(quote.quote)\"\n\n- \(quote.author ?? "")"
+		let textToShare = """
+		Quote of the Day:
 		
-//		let renderer = UIGraphicsImageRenderer(size: quoteView.bounds.size)
-//		let image = renderer.image { ctx in
-//			quoteView.drawHierarchy(in: quoteView.bounds, afterScreenUpdates: true)
-//		}
-		let objectsToShare: [Any] = [textToShare]
+		\"\(quote.quote)\"
+		
+		- \(quote.author ?? "")
+		"""
+		
+		let imageView = ShareQuoteImageView()
+		
+		let renderer = UIGraphicsImageRenderer(size: imageView.bounds.size)
+		let image = renderer.image { ctx in
+			imageView.drawHierarchy(in: imageView.bounds, afterScreenUpdates: true)
+		}
+		
+		let objectsToShare: [Any] = [image, textToShare]
 		let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
 		activityVC.excludedActivityTypes = [UIActivity.ActivityType.addToReadingList]
 			
@@ -82,7 +101,13 @@ class QuoteViewController: UIViewController {
 	}
 	
 	@objc func favoriteButtonClicked() {
-		quoteView.toggleFavoriteButton()
+		if quoteView.favoriteButton.isOn {
+			quoteView.favoriteButton.isOn = false
+			favoriteDelegate.removeFavorite(quote)
+		} else {
+			quoteView.favoriteButton.isOn = true
+			favoriteDelegate.addFavorite(quote)
+		}
 	}
 	
 	@objc func categoryButtonClicked() {
@@ -97,28 +122,6 @@ class QuoteViewController: UIViewController {
 		quoteView.shareButton.addTarget(self, action: #selector(shareButtonClicked), for: .touchUpInside)
 		quoteView.favoriteButton.addTarget(self, action: #selector(favoriteButtonClicked), for: .touchUpInside)
 		quoteView.categoryButton.addTarget(self, action: #selector(categoryButtonClicked), for: .touchUpInside)
-	}
-	
-	private func configureQuoteView() {
-		// configure font size based off quote length
-		quoteView.quoteLabel.text = quote.quote
-		quoteView.authorLabel.text = "- \(quote.author ?? "")"
-		quoteView.dateLabel.text = formatDate(dateString: quote.date)
-		quoteView.categoryLabel.text = "\(String(describing: quote.category))"
-	}
-	
-	private func formatDate(dateString: String) -> String {
-		let dateFormatterGet = DateFormatter()
-		dateFormatterGet.dateFormat = "yyyy-MM-dd"
-		
-		let dateFormatterPrint = DateFormatter()
-		dateFormatterPrint.dateFormat = "dd MMM yyyy"
-		
-		if let date = dateFormatterGet.date(from: dateString) {
-			return dateFormatterPrint.string(from: date)
-		} else {
-			return dateString
-		}
 	}
 }
 

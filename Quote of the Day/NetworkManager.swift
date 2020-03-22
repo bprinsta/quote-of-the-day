@@ -9,6 +9,7 @@
 import Foundation
 
 class NetworkManager: NSObject {
+	
 	static let shared = NetworkManager()
 	
 	func fetchQuote(about category: Category, completionHandler: @escaping (Result<[Quote], Error>) -> ()) {
