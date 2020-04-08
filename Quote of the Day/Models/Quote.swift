@@ -17,10 +17,10 @@ struct Quote: Decodable, Hashable {
 	let date: String
 	let title: String?
 	let background: URL?
-	let favorited: Bool?
+	var favorited: Bool?
 	
 	func hash(into hasher: inout Hasher) {
-		hasher.combine(id)
+		hasher.combine(quote)
 	}
 
 }

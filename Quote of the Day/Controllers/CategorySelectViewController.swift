@@ -12,9 +12,9 @@ protocol CategorySelectionDelegate {
 	func didTapCategory(selected: Category)
 }
 
-class SelectCategoryViewController: UIViewController {
+class CategorySelectViewController: UIViewController {
 
-	let selectCategoryView = SelectCategoryView()
+	let selectCategoryView = CategorySelectView()
 	
 	var categoryDelegate: CategorySelectionDelegate!
 	

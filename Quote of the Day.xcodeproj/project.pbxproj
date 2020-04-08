@@ -16,8 +16,8 @@
 		524DB47823FC0DFB009F6546 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524DB47723FC0DFB009F6546 /* Constants.swift */; };
 		524DB47A23FDA3D8009F6546 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524DB47923FDA3D8009F6546 /* SettingsView.swift */; };
 		524DB47C24018FF2009F6546 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524DB47B24018FF2009F6546 /* MainTabBarController.swift */; };
-		524DB480240352C0009F6546 /* SelectCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524DB47F240352BF009F6546 /* SelectCategoryViewController.swift */; };
-		524DB482240352E4009F6546 /* SelectCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524DB481240352E4009F6546 /* SelectCategoryView.swift */; };
+		524DB480240352C0009F6546 /* CategorySelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524DB47F240352BF009F6546 /* CategorySelectViewController.swift */; };
+		524DB482240352E4009F6546 /* CategorySelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524DB481240352E4009F6546 /* CategorySelectView.swift */; };
 		5261054D23F3B469002212B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5261054C23F3B469002212B8 /* AppDelegate.swift */; };
 		5261054F23F3B469002212B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5261054E23F3B469002212B8 /* SceneDelegate.swift */; };
 		5261055623F3B46B002212B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5261055523F3B46B002212B8 /* Assets.xcassets */; };
@@ -56,8 +56,8 @@
 		524DB47723FC0DFB009F6546 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		524DB47923FDA3D8009F6546 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		524DB47B24018FF2009F6546 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		524DB47F240352BF009F6546 /* SelectCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryViewController.swift; sourceTree = "<group>"; };
-		524DB481240352E4009F6546 /* SelectCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryView.swift; sourceTree = "<group>"; };
+		524DB47F240352BF009F6546 /* CategorySelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectViewController.swift; sourceTree = "<group>"; };
+		524DB481240352E4009F6546 /* CategorySelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectView.swift; sourceTree = "<group>"; };
 		5261054923F3B469002212B8 /* Quote of the Day.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Quote of the Day.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5261054C23F3B469002212B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5261054E23F3B469002212B8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -158,7 +158,7 @@
 			children = (
 				524DB47B24018FF2009F6546 /* MainTabBarController.swift */,
 				5261056E23F3B72A002212B8 /* QuoteViewController.swift */,
-				524DB47F240352BF009F6546 /* SelectCategoryViewController.swift */,
+				524DB47F240352BF009F6546 /* CategorySelectViewController.swift */,
 				5261057023F3B737002212B8 /* FavoritesViewController.swift */,
 				5261057223F3B740002212B8 /* SettingsViewController.swift */,
 				5261057523F3B77D002212B8 /* CalenderViewController.swift */,
@@ -173,9 +173,9 @@
 				524190902426D2C200A4EFB3 /* Components */,
 				5261055723F3B46B002212B8 /* LaunchScreen.storyboard */,
 				5261057A23F44E22002212B8 /* QuoteView.swift */,
+				524DB481240352E4009F6546 /* CategorySelectView.swift */,
 				52660CD124245DAD00EA8246 /* ShareQuoteImageView.swift */,
 				524DB47923FDA3D8009F6546 /* SettingsView.swift */,
-				524DB481240352E4009F6546 /* SelectCategoryView.swift */,
 				52660CCD242434BE00EA8246 /* FavoriteQuotesView.swift */,
 				5241908C2426CED800A4EFB3 /* QuoteCell.swift */,
 			);
@@ -309,9 +309,9 @@
 				524DB47C24018FF2009F6546 /* MainTabBarController.swift in Sources */,
 				5261054F23F3B469002212B8 /* SceneDelegate.swift in Sources */,
 				524DB47A23FDA3D8009F6546 /* SettingsView.swift in Sources */,
-				524DB482240352E4009F6546 /* SelectCategoryView.swift in Sources */,
+				524DB482240352E4009F6546 /* CategorySelectView.swift in Sources */,
 				524190922426D31800A4EFB3 /* CardView.swift in Sources */,
-				524DB480240352C0009F6546 /* SelectCategoryViewController.swift in Sources */,
+				524DB480240352C0009F6546 /* CategorySelectViewController.swift in Sources */,
 				52660CCE242434BE00EA8246 /* FavoriteQuotesView.swift in Sources */,
 				5261057323F3B740002212B8 /* SettingsViewController.swift in Sources */,
 				524DB47623FA46D7009F6546 /* UIView+Anchor.swift in Sources */,

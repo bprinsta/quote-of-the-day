@@ -31,11 +31,7 @@ class Notifications: NSObject, UNUserNotificationCenterDelegate {
 		let content = UNMutableNotificationContent()
 			
 		// here all we want is maybe some singleton value of the quote
-		content.body = """
-		\"\(dailyQuote.quote)\"
-		
-		- \(dailyQuote.author ?? "")
-		"""
+		content.body = "Check out your new Quote of the Day!"
 		
 		content.sound = UNNotificationSound.default
 		content.badge = 1

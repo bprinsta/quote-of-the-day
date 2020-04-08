@@ -20,7 +20,12 @@ class ShareQuoteImageView: UIView {
 		}
 	}
 	
-	let logoImageView = LogoImageView(frame: .zero)
+	let logoImageView: LogoImageView = {
+		let logoImageView = LogoImageView(frame: .zero)
+		logoImageView.setImageColor(color: .black)
+		
+		return logoImageView
+	}()
 	
 	var categoryLabel: UILabel = {
 		let label = UILabel()
@@ -59,8 +64,6 @@ class ShareQuoteImageView: UIView {
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
-		addSubviews()
-		anchorSubviews()
 	}
 	
 	func addSubviews(){

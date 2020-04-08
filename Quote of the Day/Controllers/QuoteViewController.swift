@@ -10,7 +10,6 @@ import UIKit
 import WebKit
 
 protocol FavoriteDelegate {
-	
 	func addFavorite(_ quote: Quote)
 	
 	func removeFavorite(_ quote: Quote)
@@ -87,6 +86,7 @@ class QuoteViewController: UIViewController {
 		"""
 		
 		let imageView = ShareQuoteImageView()
+		imageView.quote = quote
 		
 		let renderer = UIGraphicsImageRenderer(size: imageView.bounds.size)
 		let image = renderer.image { ctx in
@@ -111,7 +111,7 @@ class QuoteViewController: UIViewController {
 	}
 	
 	@objc func categoryButtonClicked() {
-		let categoryVC = SelectCategoryViewController()
+		let categoryVC = CategorySelectViewController()
 		
 		categoryVC.categoryDelegate = self
         self.present(categoryVC, animated: true, completion: nil)

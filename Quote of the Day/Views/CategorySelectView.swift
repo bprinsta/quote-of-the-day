@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SelectCategoryView: UIView {
+class CategorySelectView: UIView {
 
 	var titleLabel: UILabel = {
 		let label = UILabel()

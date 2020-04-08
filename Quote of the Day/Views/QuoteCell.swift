@@ -58,44 +58,29 @@ class QuoteCell: BaseCell {
 	var shareButton = ShareButton()
 	
 	override func addSubviews() {
-		self.addSubview(quoteText)
-		self.addSubview(categoryLabel)
-		self.addSubview(authorLabel)
-		self.addSubview(favoriteButton)
-		self.addSubview(shareButton)
+		contentView.addSubview(quoteText)
+		contentView.addSubview(categoryLabel)
+		contentView.addSubview(authorLabel)
+		contentView.addSubview(favoriteButton)
+		contentView.addSubview(shareButton)
 	}
 	
 	override func anchorSubviews() {
-		categoryLabel.anchor(top: self.topAnchor, leading: self.leadingAnchor, bottom: nil, trailing: self.trailingAnchor, padding: .init(top: 24, left: 24, bottom: 0, right: 24))
+		categoryLabel.anchor(top: contentView.topAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: .init(top: 24, left: 24, bottom: 0, right: 24))
 		
-		quoteText.anchor(top: categoryLabel.bottomAnchor, leading: self.leadingAnchor, bottom: nil, trailing: self.trailingAnchor, padding: .init(top: 8, left: 24, bottom: 0, right: 24))
+		quoteText.anchor(top: categoryLabel.bottomAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: .init(top: 8, left: 24, bottom: 16, right: 24))
 		
-		authorLabel.anchor(top: nil, leading: nil, bottom: self.bottomAnchor, trailing: self.trailingAnchor, padding: .init(top: 8, left: 0, bottom: 16, right: 24))
+		authorLabel.anchor(top: quoteText.bottomAnchor, leading: nil, bottom: contentView.bottomAnchor, trailing: contentView.trailingAnchor, padding: .init(top: 24, left: 0, bottom: 16, right: 24))
 		
-		favoriteButton.anchor(top: nil, leading: self.leadingAnchor, bottom: self.bottomAnchor, trailing: nil, padding: .init(top: 0, left: 24, bottom: 16, right: 0), size: .init(width: 25, height: 25))
+		favoriteButton.anchor(top: nil, leading: contentView.leadingAnchor, bottom: contentView.bottomAnchor, trailing: nil, padding: .init(top: 0, left: 24, bottom: 16, right: 0), size: .init(width: 25, height: 25))
 		
-		shareButton.anchor(top: nil, leading: favoriteButton.trailingAnchor, bottom: self.bottomAnchor, trailing: nil, padding: .init(top: 0, left: 16, bottom: 16, right: 0), size: .init(width: 25, height: 25))
+		shareButton.anchor(top: nil, leading: favoriteButton.trailingAnchor, bottom: contentView.bottomAnchor, trailing: nil, padding: .init(top: 0, left: 16, bottom: 16, right: 0), size: .init(width: 25, height: 25))
+		
+		// contentView.anchor(top: nil, leading: nil, bottom: authorLabel.bottomAnchor, trailing: nil)
 	}
 }
 
 class BaseCell: UICollectionViewCell {
-	
-	var maxWidthConstraint: NSLayoutConstraint! {
-		didSet {
-			maxWidthConstraint.isActive = false
-		}
-	}
-	
-	var maxWidth: CGFloat? = nil {
-		didSet {
-			guard let maxWidth = maxWidth else {
-				return
-			}
-			maxWidthConstraint.isActive = true
-			maxWidthConstraint.constant = maxWidth
-		}
-	}
-	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		
@@ -116,11 +101,8 @@ class BaseCell: UICollectionViewCell {
 		self.layer.masksToBounds = true
 	}
 	
-	func addSubviews() {
-		
-	}
+	func addSubviews() {}
 	
 	func anchorSubviews() {
-		
 	}
 }

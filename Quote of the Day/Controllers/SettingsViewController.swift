@@ -12,7 +12,6 @@ class SettingsViewController: UIViewController {
 
 	lazy var settingsView = SettingsView()
 
-	
     override func viewDidLoad() {
         super.viewDidLoad()
 		view = settingsView
