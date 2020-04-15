@@ -16,10 +16,6 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-//		guard container != nil else {
-//            fatalError("This view needs a persistent container.")
-//        }
-		
 		UITabBar.appearance().tintColor = Constants.accentColor
 		
 		let quoteVC = createQuoteViewController()

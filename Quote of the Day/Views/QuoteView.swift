@@ -20,7 +20,7 @@ class QuoteView: UIView {
 			}
 		}
 	}
-	
+		
 	// MARK: View Creation
 	let cardView = CardView()
 	

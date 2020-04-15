@@ -15,14 +15,10 @@ struct Quote: Decodable, Hashable {
 	let author: String?
 	let category: Category
 	let date: String
-	let title: String?
-	let background: URL?
-	var favorited: Bool?
 	
 	func hash(into hasher: inout Hasher) {
 		hasher.combine(quote)
 	}
-
 }
 
 struct Root: Decodable {

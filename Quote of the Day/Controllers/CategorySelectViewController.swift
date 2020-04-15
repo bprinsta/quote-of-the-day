@@ -54,10 +54,7 @@ class CategorySelectViewController: UIViewController {
 			// local category & button
 			let category = Category.allCases[index]
 			let button = selectCategoryView.categoryButtons[index]
-			
-			// set button title
-			button.setTitle("\(iconMap[category] ?? "📖") \n" + String(describing: category), for: UIControl.State.normal)
-			
+
 			// map button to category type
 			categoryButtonMap[button] = category
 		}

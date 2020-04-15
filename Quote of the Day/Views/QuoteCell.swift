@@ -10,7 +10,7 @@ import UIKit
 
 class QuoteCell: BaseCell {
 	
-	var quote: Quote? {
+	var quote: QuoteEntity? {
 		didSet {
 			if let quote = quote {
 				quoteText.text = "\"\(quote.quote)\""

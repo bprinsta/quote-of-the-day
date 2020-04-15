@@ -9,6 +9,20 @@
 import UIKit
 
 class CategorySelectView: UIView {
+	
+	static var iconMap: [Category: String] = {
+		var map = [Category:String]()
+		map[.inspire] = "🧠"
+		map[.life] = "🌿"
+		map[.art] = "🎨"
+		map[.management] = "💼"
+		map[.funny] = "🎭"
+		map[.love] = "💌"
+		map[.sports] = "🏅"
+		map[.students] = "📚"
+		
+		return map
+	}()
 
 	var titleLabel: UILabel = {
 		let label = UILabel()
@@ -27,10 +41,33 @@ class CategorySelectView: UIView {
 			let button = UIButton()
 			button.backgroundColor = .white
 			
-			button.setTitleColor(.systemGray, for: UIControl.State.normal)
-			button.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 18)
+			let style = NSMutableParagraphStyle()
+			style.alignment = .center
+			style.lineBreakMode = .byWordWrapping
+			
+			let fontBig = UIFont(name: "Avenir-Medium", size: 56)
+			let fontSmall = UIFont(name: "Avenir-Medium", size: 18)
+
+			let dict1:[NSAttributedString.Key:Any] = [
+				NSAttributedString.Key.font:fontBig as Any,
+				NSAttributedString.Key.paragraphStyle:style
+			]
+
+			let dict2:[NSAttributedString.Key:Any] = [
+				NSAttributedString.Key.font:fontSmall as Any,
+				NSAttributedString.Key.paragraphStyle:style,
+				NSAttributedString.Key.foregroundColor: UIColor.gray
+			]
+
+			let attString = NSMutableAttributedString()
+			attString.append(NSAttributedString(string: CategorySelectView.iconMap[category]!, attributes: dict1))
+			attString.append(NSAttributedString(string: "\n"))
+			attString.append(NSAttributedString(string: String(describing: category), attributes: dict2))
+
+			button.setAttributedTitle(attString, for: .normal)
+			
 			button.titleLabel?.numberOfLines = 2
-			button.titleLabel?.textAlignment = .center
+			button.titleLabel?.lineBreakMode = .byWordWrapping
 			
 			button.layer.cornerRadius = 8
 			button.clipsToBounds = true

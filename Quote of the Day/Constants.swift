@@ -14,9 +14,12 @@ struct Constants {
 
 	static let pink = #colorLiteral(red: 1, green: 0.9294117647, blue: 0.8980392157, alpha: 1)
 	static let darkPink = #colorLiteral(red: 1, green: 0.4722140719, blue: 0.5490196078, alpha: 1)
-
-	static let backgroundColor = blue
-	static let accentColor = darkBlue
 	
-	static let dummyQuote = Quote(id: "000", quote: "If we’re not stretching, we’re not growing. If we’re not growing, we’re probably not fulfilling our potential. The only person in this room that knows your potential is you.", length: "173", author: "Kevin Turner", category: Category.inspire, date: "14 Feb 2020",title: nil, background: nil, favorited: nil)
+	static let purple = #colorLiteral(red: 0.9294117647, green: 0.8980392157, blue: 1, alpha: 1)
+	static let darkPurple = #colorLiteral(red: 0.5137254902, green: 0.3019607843, blue: 1, alpha: 1)
+
+	static let backgroundColor = purple
+	static let accentColor = darkPurple
+	
+	static let dummyQuote = Quote(id: "000", quote: "If we’re not stretching, we’re not growing. If we’re not growing, we’re probably not fulfilling our potential. The only person in this room that knows your potential is you.", length: "173", author: "Kevin Turner", category: Category.inspire, date: "14 Feb 2020")
 }

@@ -22,6 +22,12 @@ class QuoteViewController: UIViewController {
 	var quote: Quote = Constants.dummyQuote {
 		didSet {
 			quoteView.quote = quote
+			
+			if favoritedQuotes.contains(quote) {
+				quoteView.favoriteButton.isOn = true
+			} else {
+				quoteView.favoriteButton.isOn = false
+			}
 		}
 	}
 	
@@ -33,10 +39,12 @@ class QuoteViewController: UIViewController {
 	
 	var favoriteDelegate: FavoriteDelegate!
 	
+	var favoritedQuotes = Set<Quote>()
+	
 	var webViewController = UIViewController()
 	
 	let webView = WKWebView()
-	
+		
 	override func loadView() {
 		view = quoteView
 		
@@ -103,9 +111,11 @@ class QuoteViewController: UIViewController {
 	@objc func favoriteButtonClicked() {
 		if quoteView.favoriteButton.isOn {
 			quoteView.favoriteButton.isOn = false
+			favoritedQuotes.remove(quote)
 			favoriteDelegate.removeFavorite(quote)
 		} else {
 			quoteView.favoriteButton.isOn = true
+			favoritedQuotes.insert(quote)
 			favoriteDelegate.addFavorite(quote)
 		}
 	}

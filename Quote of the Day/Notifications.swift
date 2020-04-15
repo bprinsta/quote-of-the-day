@@ -12,10 +12,7 @@ import UserNotifications
 class Notifications: NSObject, UNUserNotificationCenterDelegate {
 	
 	let notificationCenter = UNUserNotificationCenter.current()
-	
-	// gonna make this a delegate of quoteViewController
-	var dailyQuote: Quote = Constants.dummyQuote
-	
+		
 	func notificationRequest() {
 		let options: UNAuthorizationOptions = [.alert, .sound, .badge]
 		
