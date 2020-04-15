@@ -24,7 +24,6 @@ class QuoteCell: BaseCell {
 		let label = UILabel()
 		label.font = UIFont(name: "Avenir-Book", size: 16)
 		label.textAlignment = .left
-		label.textColor = .black
 		label.numberOfLines = 0
 		
 		return label
@@ -96,7 +95,7 @@ class BaseCell: UICollectionViewCell {
 	}
 	
 	func setupViews() {
-		backgroundColor = .systemBackground
+		backgroundColor = UIColor(named: "cardColor")
 		self.layer.cornerRadius = 20
 		self.layer.masksToBounds = true
 	}

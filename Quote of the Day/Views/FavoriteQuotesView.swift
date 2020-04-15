@@ -34,7 +34,6 @@ class FavoriteQuotesView: UIView {
 	var titleLabel: UILabel = {
 		let label = UILabel()
 		label.text = "Favorites"
-		label.textColor = .black
 		label.textAlignment = .center
 		
 		label.font = UIFont(name: "AvenirNext-Medium", size: 24)

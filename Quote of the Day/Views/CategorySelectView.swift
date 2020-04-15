@@ -27,7 +27,6 @@ class CategorySelectView: UIView {
 	var titleLabel: UILabel = {
 		let label = UILabel()
 		label.text = "Categories"
-		label.textColor = .black
 		label.textAlignment = .center
 		
 		label.font = UIFont(name: "AvenirNext-Medium", size: 24)
@@ -39,7 +38,7 @@ class CategorySelectView: UIView {
 		
 		for category in Category.allCases {
 			let button = UIButton()
-			button.backgroundColor = .white
+			button.backgroundColor = UIColor(named: "cardColor")
 			
 			let style = NSMutableParagraphStyle()
 			style.alignment = .center
@@ -56,7 +55,6 @@ class CategorySelectView: UIView {
 			let dict2:[NSAttributedString.Key:Any] = [
 				NSAttributedString.Key.font:fontSmall as Any,
 				NSAttributedString.Key.paragraphStyle:style,
-				NSAttributedString.Key.foregroundColor: UIColor.gray
 			]
 
 			let attString = NSMutableAttributedString()

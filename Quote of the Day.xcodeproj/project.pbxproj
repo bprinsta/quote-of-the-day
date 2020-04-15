@@ -149,11 +149,11 @@
 				5261054E23F3B469002212B8 /* SceneDelegate.swift */,
 				52660CCF242452FB00EA8246 /* Notifications.swift */,
 				524DB47723FC0DFB009F6546 /* Constants.swift */,
+				5261055523F3B46B002212B8 /* Assets.xcassets */,
 				5261057E23F452B4002212B8 /* Models */,
 				5261057923F44DE2002212B8 /* Views */,
 				5261057423F3B74C002212B8 /* Controllers */,
 				523BE44D2441A8C9007EC011 /* Managers */,
-				5261055523F3B46B002212B8 /* Assets.xcassets */,
 				5261055A23F3B46B002212B8 /* Info.plist */,
 			);
 			path = "Quote of the Day";

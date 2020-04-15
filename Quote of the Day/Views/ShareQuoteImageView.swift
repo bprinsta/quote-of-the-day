@@ -40,6 +40,7 @@ class ShareQuoteImageView: UIView {
 		label.font = UIFont(name: "Avenir-Book", size: 14)
 		label.textAlignment = .center
 		label.numberOfLines = 0
+		label.textColor = .black
 		
 		return label
 	}()
@@ -49,6 +50,7 @@ class ShareQuoteImageView: UIView {
 		label.font = UIFont(name: "Avenir-LightOblique", size: 12)
 		label.textAlignment = .left
 		label.numberOfLines = 0
+		label.textColor = .black
 		
 		return label
 	}()
@@ -56,7 +58,7 @@ class ShareQuoteImageView: UIView {
 	// MARK: Methods
 	override init(frame: CGRect) {
 		super.init(frame: .init(x: 0, y: 0, width: 340, height: 340))
-		self.backgroundColor = Constants.backgroundColor
+		self.backgroundColor = Constants.purple
 		
 		addSubviews()
 		anchorSubviews()

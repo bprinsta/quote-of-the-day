@@ -13,7 +13,7 @@ class CardView: UIView {
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		
-		self.backgroundColor = .systemBackground
+		self.backgroundColor = UIColor(named: "cardColor")
 		self.layer.cornerRadius = 30
 	}
 	

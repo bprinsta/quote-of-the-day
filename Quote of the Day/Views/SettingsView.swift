@@ -19,7 +19,7 @@ class SettingsView: UIView {
 	}()
 	
 	let logoImage: UIImageView = {
-		let imageView = UIImageView(image: #imageLiteral(resourceName: "icon_in_app"))
+		let imageView = UIImageView(image: #imageLiteral(resourceName: "in_app_icon"))
 		imageView.contentMode = .scaleAspectFit
 		imageView.layer.cornerRadius = 8.0
 		imageView.clipsToBounds = true
@@ -29,7 +29,6 @@ class SettingsView: UIView {
 	let titleLabel: UILabel = {
 		let label = UILabel()
 		label.font = UIFont(name: "Avenir-Medium", size: 24)
-		label.textColor = .black
 		label.text = "Quote of the Day"
 		
 		return label
