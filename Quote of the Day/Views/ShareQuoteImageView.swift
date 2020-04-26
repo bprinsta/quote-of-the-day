@@ -79,7 +79,7 @@ class ShareQuoteImageView: UIView {
 		logoImageView.anchor(top: self.topAnchor, leading: nil, bottom: nil, trailing: nil, padding: .init(top: 64, left: 0, bottom: 0, right: 0), size: .init(width: 135, height: 24))
 		logoImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
 		
-		quoteLabel.anchor(top: logoImageView.bottomAnchor, leading: self.leadingAnchor, bottom: nil, trailing: self.trailingAnchor, padding: .init(top: 24, left: 32, bottom: 0, right: 32))
+		quoteLabel.anchor(top: logoImageView.bottomAnchor, leading: self.leadingAnchor, bottom: nil, trailing: self.trailingAnchor, padding: .init(top: 24, left: 32, bottom: 0, right: 32), size: .init(width: 0, height: 180))
 		
 		categoryLabel.anchor(top: nil, leading: self.leadingAnchor, bottom: self.bottomAnchor, trailing: nil, padding: .init(top: 0, left: 24, bottom: 24, right: 0))
 		

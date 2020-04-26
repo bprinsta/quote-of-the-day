@@ -12,11 +12,7 @@ class SettingsView: UIView {
 
     let cardView = CardView()
 	
-	let scrollView: UIScrollView = {
-		let view = UIScrollView()
-		
-		return view
-	}()
+	let scrollView = UIScrollView()
 	
 	let logoImage: UIImageView = {
 		let imageView = UIImageView(image: #imageLiteral(resourceName: "in_app_icon"))

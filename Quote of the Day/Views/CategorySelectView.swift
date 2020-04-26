@@ -44,7 +44,7 @@ class CategorySelectView: UIView {
 			style.alignment = .center
 			style.lineBreakMode = .byWordWrapping
 			
-			let fontBig = UIFont(name: "Avenir-Medium", size: 56)
+			let fontBig = UIFont(name: "Avenir-Medium", size: 40)
 			let fontSmall = UIFont(name: "Avenir-Medium", size: 18)
 
 			let dict1:[NSAttributedString.Key:Any] = [

@@ -17,6 +17,17 @@ class QuoteView: UIView {
 				authorLabel.text = "- \(quote.author ?? "")"
 				dateLabel.text = formatDate(dateString: quote.date)
 				categoryLabel.text = "\(String(describing: quote.category))"
+				
+				if let length = quote.length {
+					if Int(length) ?? 0 > 400 {
+						quoteLabel.font = UIFont(name: "Avenir-Book", size: 18)
+					} else if Int(length) ?? 0 < 100 {
+						quoteLabel.font = UIFont(name: "Avenir-Book", size: 22)
+					}
+					else {
+						quoteLabel.font = UIFont(name: "Avenir-Book", size: 20)
+					}
+				}
 			}
 		}
 	}
@@ -44,13 +55,21 @@ class QuoteView: UIView {
 		return label
 	}()
 	
-	var quoteLabel: UILabel = {
-		let label = UILabel()
-		label.font = UIFont(name: "Avenir-Book", size: 20)
-		label.textAlignment = .left
-		label.numberOfLines = 0
+	var quoteLabel: UITextView = {
+		let textView = UITextView()
+		textView.font = UIFont(name: "Avenir-Book", size: 20)
+		textView.textAlignment = .left
+		// textView.numberOfLines = 0
+		textView.isEditable = false
+		textView.textContainer.lineFragmentPadding = 0
 		
-		return label
+		// if iphone SE then
+		// if iphone 10 then
+		// if iphone 8 then
+		// if iphone 11 then
+		// if length, then
+		
+		return textView
 	}()
 	
 	var authorLabel: UILabel = {
@@ -122,8 +141,8 @@ class QuoteView: UIView {
 		
 		categoryLabel.anchor(top: dateLabel.bottomAnchor, leading: cardView.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 48, left: 32, bottom: 0, right: 0))
 		
-		quoteLabel.anchor(top: categoryLabel.bottomAnchor, leading: cardView.leadingAnchor, bottom: nil, trailing: cardView.trailingAnchor, padding: .init(top: 8, left: 32, bottom: 0, right: 32))
-		
+		quoteLabel.anchor(top: categoryLabel.bottomAnchor, leading: cardView.leadingAnchor, bottom: nil, trailing: cardView.trailingAnchor, padding: .init(top: 8, left: 32, bottom: 0, right: 32), size: .init(width: 0, height: 200))
+
 		authorLabel.anchor(top: quoteLabel.bottomAnchor, leading: nil, bottom: nil, trailing: cardView.trailingAnchor, padding: .init(top: 32, left: 32, bottom: 0, right: 32))
 		
 		lookupButton.anchor(top: authorLabel.bottomAnchor, leading: nil, bottom: nil, trailing: cardView.trailingAnchor, padding: .init(top: 0, left: 32, bottom: 0, right: 32))
