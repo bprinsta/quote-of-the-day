@@ -5,6 +5,12 @@ This iOS application delivers you daily inspirational quotes about love, life, a
 Powered by the [Quotes API](https://theysaidso.com/api/) from They Said So.
 
 # Screenshots
+<div align="center">
+    <img src="https://i.ibb.co/3WYg3jQ/main-screen.png" alt="main-screen" border="0" height="300">
+    <img src="https://i.ibb.co/MBMhY6n/main-screen-dark.png" alt="main-screen-dark" border="0" height="300">
+    <img src="https://i.ibb.co/D5qdTtX/favorites-screen.png" alt="favorites-screen" border="0" height="300">  
+    <img src="https://i.ibb.co/3s109Jp/category-screen-dark.png" alt="category-screen-dark" border="0" height="300">
+</div>
 
 # Concepts & Libraries Learned Through Project
 - CoreData
