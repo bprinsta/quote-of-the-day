@@ -12,9 +12,7 @@ import CoreData
 class FavoritesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 	
 	var favoriteQuotes = [QuoteEntity]()
-	
-	var map = [QuoteCell: QuoteEntity]()
-	
+			
 	let cellId = "cellId"
 	
 	let favoriteQuotesView = FavoriteQuotesView()
@@ -28,9 +26,7 @@ class FavoritesViewController: UIViewController, UICollectionViewDataSource, UIC
 		favoriteQuotesView.collectionView.register(QuoteCell.self, forCellWithReuseIdentifier: cellId)
 		
 		getFavorites()
-		
-		configureQuoteButtons()
-    }
+	}
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return favoriteQuotes.count
@@ -40,11 +36,13 @@ class FavoritesViewController: UIViewController, UICollectionViewDataSource, UIC
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! QuoteCell
 		
 		cell.quote = favoriteQuotes[indexPath.item]
-		map[cell] = cell.quote
-		//cell.favoriteButton.addTarget(self, action: #selector(deleteFavorite), for: .touchUpInside)
+		
+		cell.favoriteButton.quoteEntity = favoriteQuotes[indexPath.item]
+		cell.shareButton.quoteEntity = favoriteQuotes[indexPath.item]
+		
+		cell.favoriteButton.addTarget(self, action: #selector(deleteQuote), for: .touchUpInside)
 		cell.shareButton.addTarget(self, action: #selector(shareButtonClicked), for: .touchUpInside)
 		
-		// need to map buttons to specfic senders yada ydada
 		return cell
 	}
 		
@@ -52,11 +50,7 @@ class FavoritesViewController: UIViewController, UICollectionViewDataSource, UIC
 		CGSize.init(width: view.frame.width - 24, height: 180)
 	}
 	
-	func configureQuoteButtons() {
-		
-	}
-	
-	func saveFavorite(quote: Quote) {
+	private func saveFavorite(quote: Quote) {
 		let quoteEntity = QuoteEntity(context: CoreDataManager.managedObjectContext)
 		
 		quoteEntity.setProperties(quote: quote)
@@ -64,8 +58,12 @@ class FavoritesViewController: UIViewController, UICollectionViewDataSource, UIC
 		favoriteQuotes.append(quoteEntity)
 	}
 	
-	func deleteFavorite(quote: Quote) {
+	private func deleteFavorite(quote: Quote) {
 		let entities = favoriteQuotes.filter {$0.id == quote.id}
+		if (entities.isEmpty) {
+			return
+		}
+		
 		let quoteEntity = entities[0]
 		
 		CoreDataManager.managedObjectContext.delete(quoteEntity)
@@ -101,31 +99,40 @@ extension FavoritesViewController: FavoriteDelegate {
 }
 
 extension FavoritesViewController {
-	@objc func shareButtonClicked(index: Int) {
-		let quote = Constants.dummyQuote
-		print(index)
+	@objc func shareButtonClicked(_ sender: Any) {
+		let shareButton = sender as! ShareButton
 		
-		let textToShare = """
-		Quote of the Day:
-		
-		\"\(quote.quote)\"
-		
-		- \(quote.author ?? "")
-		"""
-		
-		let imageView = ShareQuoteImageView()
-		imageView.quote = quote
-		
-		let renderer = UIGraphicsImageRenderer(size: imageView.bounds.size)
-		let image = renderer.image { ctx in
-			imageView.drawHierarchy(in: imageView.bounds, afterScreenUpdates: true)
-		}
-		
-		let objectsToShare: [Any] = [image, textToShare]
-		let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
-		activityVC.excludedActivityTypes = [UIActivity.ActivityType.addToReadingList]
+		if let quote = shareButton.quoteEntity {
 			
-		self.present(activityVC, animated: true, completion: nil)
+			let textToShare = """
+			Quote of the Day:
+			
+			\"\(quote.quote)\"
+			
+			- \(quote.author ?? "")
+			"""
+			
+			let imageView = ShareQuoteImageView()
+			imageView.quote = quote.toQuote()
+			
+			let renderer = UIGraphicsImageRenderer(size: imageView.bounds.size)
+			let image = renderer.image { ctx in
+				imageView.drawHierarchy(in: imageView.bounds, afterScreenUpdates: true)
+			}
+			
+			let objectsToShare: [Any] = [image, textToShare]
+			let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+			activityVC.excludedActivityTypes = [UIActivity.ActivityType.addToReadingList]
+			
+			self.present(activityVC, animated: true, completion: nil)
+		}
+	}
+	
+	@objc func deleteQuote(_ sender: Any) {
+		let favoriteButton = sender as! FavoriteButton
+		if let quote = favoriteButton.quoteEntity {
+			removeFavorite(quote.toQuote())
+		}
 	}
 }
 

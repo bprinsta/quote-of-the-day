@@ -20,13 +20,15 @@ extension QuoteEntity {
     @NSManaged public var author: String?
     @NSManaged public var id: String
     @NSManaged public var category: String
+//	@NSManaged public var categoryExplicit: String
     @NSManaged public var date: String
 	
 	func setProperties(quote: Quote) {
 		self.id = quote.id
 		self.quote = quote.quote
 		self.author = quote.author
-		self.category = String(describing: quote.category)
+		self.category = quote.category.rawValue
+//		self.categoryExplicit = quote.category.rawValue
 		self.date = quote.date
 	}
 	

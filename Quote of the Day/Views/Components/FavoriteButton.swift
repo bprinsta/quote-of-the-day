@@ -10,6 +10,8 @@ import UIKit
 
 class FavoriteButton: UIButton {
     
+	var quoteEntity: QuoteEntity?
+	
 	var isOn = false {
 		didSet {
 			if isOn {

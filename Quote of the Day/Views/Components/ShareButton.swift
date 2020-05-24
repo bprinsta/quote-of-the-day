@@ -9,6 +9,8 @@
 import UIKit
 
 class ShareButton: UIButton {
+	
+	var quoteEntity: QuoteEntity?
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)

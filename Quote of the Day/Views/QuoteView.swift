@@ -59,15 +59,9 @@ class QuoteView: UIView {
 		let textView = UITextView()
 		textView.font = UIFont(name: "Avenir-Book", size: 20)
 		textView.textAlignment = .left
-		// textView.numberOfLines = 0
 		textView.isEditable = false
 		textView.textContainer.lineFragmentPadding = 0
-		
-		// if iphone SE then
-		// if iphone 10 then
-		// if iphone 8 then
-		// if iphone 11 then
-		// if length, then
+		textView.backgroundColor = UIColor(named: "cardColor")
 		
 		return textView
 	}()

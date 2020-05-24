@@ -8,6 +8,8 @@
 
 import UIKit
 import WebKit
+import CoreData
+
 
 protocol FavoriteDelegate {
 	func addFavorite(_ quote: Quote)
@@ -23,10 +25,12 @@ class QuoteViewController: UIViewController {
 		didSet {
 			quoteView.quote = quote
 			
-			if favoritedQuotes.contains(quote) {
-				quoteView.favoriteButton.isOn = true
-			} else {
+			let results = favoriteQuotes.filter { $0.id == quote.id }
+			
+			if results.isEmpty {
 				quoteView.favoriteButton.isOn = false
+			} else {
+				quoteView.favoriteButton.isOn = true
 			}
 		}
 	}
@@ -39,7 +43,7 @@ class QuoteViewController: UIViewController {
 	
 	var favoriteDelegate: FavoriteDelegate!
 	
-	var favoritedQuotes = Set<Quote>()
+	var favoriteQuotes = [Quote]()
 	
 	var webViewController = UIViewController()
 	
@@ -111,11 +115,9 @@ class QuoteViewController: UIViewController {
 	@objc func favoriteButtonClicked() {
 		if quoteView.favoriteButton.isOn {
 			quoteView.favoriteButton.isOn = false
-			favoritedQuotes.remove(quote)
 			favoriteDelegate.removeFavorite(quote)
 		} else {
 			quoteView.favoriteButton.isOn = true
-			favoritedQuotes.insert(quote)
 			favoriteDelegate.addFavorite(quote)
 		}
 	}
@@ -138,6 +140,18 @@ class QuoteViewController: UIViewController {
 extension QuoteViewController: CategorySelectionDelegate {
 	func didTapCategory(selected: Category) {
 		selectedCategory = selected
+	}
+}
+
+extension QuoteViewController {
+	func getFavorites() {
+		let fetchRequest: NSFetchRequest<QuoteEntity> = QuoteEntity.fetchRequest()
+		do {
+			let quotes = try CoreDataManager.managedObjectContext.fetch(fetchRequest)
+			self.favoriteQuotes = quotes.map{ $0.toQuote() }
+		} catch {
+			
+		}
 	}
 }
 

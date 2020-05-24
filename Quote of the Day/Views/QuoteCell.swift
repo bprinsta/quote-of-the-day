@@ -15,7 +15,9 @@ class QuoteCell: BaseCell {
 			if let quote = quote {
 				quoteText.text = "\"\(quote.quote)\""
 				authorLabel.text =  "- \(quote.author ?? "")"
-				categoryLabel.text = "\(String(describing: quote.category))"
+				if let realCategory = Category(rawValue: quote.category) {
+					categoryLabel.text = "\(String(describing: realCategory))"
+				}
 			}
 		}
 	}
@@ -50,7 +52,6 @@ class QuoteCell: BaseCell {
 	var favoriteButton: FavoriteButton = {
 		let button = FavoriteButton()
 		button.isOn = true
-		
 		return button
 	}()
 	
