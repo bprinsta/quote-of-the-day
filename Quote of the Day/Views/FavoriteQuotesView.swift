@@ -13,7 +13,7 @@ class FavoriteQuotesView: UIView {
 	let collectionView: UICollectionView = {
 		let size = NSCollectionLayoutSize(
             widthDimension: NSCollectionLayoutDimension.fractionalWidth(1),
-            heightDimension: NSCollectionLayoutDimension.estimated(44)
+            heightDimension: NSCollectionLayoutDimension.estimated(400)
         )
 		
         let item = NSCollectionLayoutItem(layoutSize: size)

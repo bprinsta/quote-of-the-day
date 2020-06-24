@@ -75,8 +75,6 @@ class QuoteCell: BaseCell {
 		favoriteButton.anchor(top: nil, leading: contentView.leadingAnchor, bottom: contentView.bottomAnchor, trailing: nil, padding: .init(top: 0, left: 24, bottom: 16, right: 0), size: .init(width: 25, height: 25))
 		
 		shareButton.anchor(top: nil, leading: favoriteButton.trailingAnchor, bottom: contentView.bottomAnchor, trailing: nil, padding: .init(top: 0, left: 16, bottom: 16, right: 0), size: .init(width: 25, height: 25))
-		
-		// contentView.anchor(top: nil, leading: nil, bottom: authorLabel.bottomAnchor, trailing: nil)
 	}
 }
 
