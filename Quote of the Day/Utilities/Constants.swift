@@ -22,4 +22,7 @@ struct Constants {
 	static let accentColor = UIColor(named: "accentColor") ?? darkPurple
 	
 	static let dummyQuote = Quote(id: "000", quote: "If we’re not stretching, we’re not growing. If we’re not growing, we’re probably not fulfilling our potential. The only person in this room that knows your potential is you.", length: "173", author: "Kevin Turner", category: Category.inspire, date: "14 Feb 2020")
+	
+	static var realAdUnitId = "ca-app-pub-8648415116321033/6053998882"
+	static var testAdUnitId = "ca-app-pub-3940256099942544/3986624511"
 }

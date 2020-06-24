@@ -27,8 +27,8 @@ class QuoteViewController: UIViewController, GADUnifiedNativeAdDelegate {
 	var nativeAdView: GADUnifiedNativeAdView!
 
 	/// The ad unit ID.
-	let adUnitID = "ca-app-pub-3940256099942544/3986624511"
-		
+	let adUnitID = Constants.realAdUnitId
+	
 	var quoteView = QuoteView()
 		
 	var quote: Quote = Constants.dummyQuote {
