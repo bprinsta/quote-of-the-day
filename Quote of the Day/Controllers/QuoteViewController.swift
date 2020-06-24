@@ -75,6 +75,10 @@ class QuoteViewController: UIViewController, GADUnifiedNativeAdDelegate {
 			assert(false, "Could not load nib file for adView")
 		}
 		setAdView(adView)
+	}
+	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
 		loadAd()
 	}
 	
