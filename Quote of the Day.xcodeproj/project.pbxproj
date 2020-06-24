@@ -37,6 +37,7 @@
 		52660CCE242434BE00EA8246 /* FavoriteQuotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52660CCD242434BE00EA8246 /* FavoriteQuotesView.swift */; };
 		52660CD0242452FB00EA8246 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52660CCF242452FB00EA8246 /* Notifications.swift */; };
 		52660CD224245DAD00EA8246 /* ShareQuoteImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52660CD124245DAD00EA8246 /* ShareQuoteImageView.swift */; };
+		52F2A30A24A2DAE4009209AA /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F2A30924A2DAE4009209AA /* UserDefaults.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,7 @@
 		52660CCD242434BE00EA8246 /* FavoriteQuotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteQuotesView.swift; sourceTree = "<group>"; };
 		52660CCF242452FB00EA8246 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		52660CD124245DAD00EA8246 /* ShareQuoteImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareQuoteImageView.swift; sourceTree = "<group>"; };
+		52F2A30924A2DAE4009209AA /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,13 +149,12 @@
 			children = (
 				5261054C23F3B469002212B8 /* AppDelegate.swift */,
 				5261054E23F3B469002212B8 /* SceneDelegate.swift */,
-				52660CCF242452FB00EA8246 /* Notifications.swift */,
-				524DB47723FC0DFB009F6546 /* Constants.swift */,
 				5261055523F3B46B002212B8 /* Assets.xcassets */,
+				52F2A30824A2DAC4009209AA /* Utilities */,
+				523BE44D2441A8C9007EC011 /* Managers */,
 				5261057E23F452B4002212B8 /* Models */,
 				5261057923F44DE2002212B8 /* Views */,
 				5261057423F3B74C002212B8 /* Controllers */,
-				523BE44D2441A8C9007EC011 /* Managers */,
 				5261055A23F3B46B002212B8 /* Info.plist */,
 			);
 			path = "Quote of the Day";
@@ -206,6 +207,16 @@
 				52250A612445C0010036A2B5 /* Quote of the Day.xcdatamodeld */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		52F2A30824A2DAC4009209AA /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				524DB47723FC0DFB009F6546 /* Constants.swift */,
+				52660CCF242452FB00EA8246 /* Notifications.swift */,
+				52F2A30924A2DAE4009209AA /* UserDefaults.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -320,6 +331,7 @@
 				52250A672445C0720036A2B5 /* QuoteEntity+CoreDataProperties.swift in Sources */,
 				5261057623F3B77D002212B8 /* CalenderViewController.swift in Sources */,
 				5241908F2426D12400A4EFB3 /* FavoriteButton.swift in Sources */,
+				52F2A30A24A2DAE4009209AA /* UserDefaults.swift in Sources */,
 				524190962426F19900A4EFB3 /* LogoLabel.swift in Sources */,
 				5261058423F9C9D8002212B8 /* NetworkManager.swift in Sources */,
 				52250A632445C0020036A2B5 /* Quote of the Day.xcdatamodeld in Sources */,

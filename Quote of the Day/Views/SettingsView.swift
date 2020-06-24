@@ -12,8 +12,6 @@ class SettingsView: UIView {
 
     let cardView = CardView()
 	
-	let scrollView = UIScrollView()
-	
 	let logoImage: UIImageView = {
 		let imageView = UIImageView(image: #imageLiteral(resourceName: "in_app_icon"))
 		imageView.contentMode = .scaleAspectFit
@@ -39,12 +37,25 @@ class SettingsView: UIView {
 		
 		return label
 	}()
+
 	
-	let stackView: UIStackView = {
-		let view = UIStackView()
+	let pickerLabel: UILabel = {
+		let label = UILabel()
+		label.font = UIFont(name: "Avenir-Book", size: 14)
+		label.textColor = .systemGray
+		label.textAlignment = .left
+		label.text = "Select you desired notification time"
 		
-		return view
+		return label
 	}()
+	
+	let notificationTimePicker: UIDatePicker = {
+		let datePicker = UIDatePicker()
+		datePicker.datePickerMode = .time
+		datePicker.minuteInterval = 15
+		
+		return datePicker
+	} ()
 	
 	// MARK: Methods
 	override init(frame: CGRect) {
@@ -74,16 +85,15 @@ class SettingsView: UIView {
 
 	func addSubviews() {
 		self.addSubview(cardView)
-		cardView.addSubview(scrollView)
-		scrollView.addSubview(titleLabel)
-		scrollView.addSubview(logoImage)
-		scrollView.addSubview(versionInfoLabel)
+		cardView.addSubview(titleLabel)
+		cardView.addSubview(logoImage)
+		cardView.addSubview(versionInfoLabel)
+		cardView.addSubview(pickerLabel)
+		cardView.addSubview(notificationTimePicker)
 	}
 	
 	func anchorSubviews() {
 		cardView.anchor(top: self.safeAreaLayoutGuide.topAnchor, leading: self.safeAreaLayoutGuide.leadingAnchor, bottom: self.safeAreaLayoutGuide.bottomAnchor, trailing: self.safeAreaLayoutGuide.trailingAnchor, padding: .init(top: 0, left: 12, bottom: 16, right: 12))
-		
-		scrollView.anchor(top: cardView.topAnchor, leading: cardView.leadingAnchor, bottom: cardView.bottomAnchor, trailing: cardView.trailingAnchor)
 		
 		logoImage.anchor(top: cardView.topAnchor, leading: nil, bottom: nil, trailing: nil, padding: .init(top: 48, left: 0, bottom: 0, right:0), size: .init(width: 60, height: 60))
 		logoImage.centerXAnchor.constraint(equalTo: cardView.centerXAnchor).isActive = true
@@ -93,6 +103,10 @@ class SettingsView: UIView {
 		
 		versionInfoLabel.anchor(top: titleLabel.bottomAnchor, leading: nil, bottom: nil, trailing: nil)
 		versionInfoLabel.centerXAnchor.constraint(equalTo: cardView.centerXAnchor).isActive = true
+		
+		pickerLabel.anchor(top: versionInfoLabel.bottomAnchor, leading: cardView.leadingAnchor, bottom: nil, trailing: cardView.trailingAnchor, padding: .init(top: 40, left: 16, bottom: 0, right: 16))
+		
+		notificationTimePicker.anchor(top: pickerLabel.bottomAnchor, leading: cardView.leadingAnchor, bottom: nil, trailing: cardView.trailingAnchor, padding: .init(top: 8, left: 16, bottom: 16, right: 16))
 	}
 
 }

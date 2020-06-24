@@ -11,10 +11,21 @@ import UIKit
 class SettingsViewController: UIViewController {
 
 	lazy var settingsView = SettingsView()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
+	
+	let fields = ["Remove Ads", "Daily notifications", "Rate this app", "Feedback"]
+		
+	override func viewDidLoad() {
+		super.viewDidLoad()
 		view = settingsView
 		
-    }
+		if let date = UserDefaults.getDate() {
+			settingsView.notificationTimePicker.setDate(date, animated: false)
+		}
+		
+		settingsView.notificationTimePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
+	}
+	
+	@objc func dateChanged(_ sender: UIDatePicker) {
+		UserDefaults.setDate(sender.date)
+	}
 }
