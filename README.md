@@ -31,9 +31,10 @@ Powered by the [Quotes API](https://theysaidso.com/api/) from They Said So.
 
 # Future Tasks
 - [X] Support Dark Mode
-- [ ] UI for settings page
-- [ ] Configure notications time in settings page
-- [ ] Vary quote textbox size by device screen size
+- [X] Google Admob Native Ads
+- [X] UI for settings page
+- [x] Configure notications time in settings page
+- [ ] Refactor UI Code
 - [ ] Create a Widget
 - [ ] Create watchOS app
 - [ ] Create cache for quotes
