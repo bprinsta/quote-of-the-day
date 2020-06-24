@@ -185,7 +185,6 @@
 		5261057923F44DE2002212B8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				524DB47523FA46D7009F6546 /* UIView+Anchor.swift */,
 				524190902426D2C200A4EFB3 /* Components */,
 				5261055723F3B46B002212B8 /* LaunchScreen.storyboard */,
 				5261057A23F44E22002212B8 /* QuoteView.swift */,
@@ -212,6 +211,7 @@
 		52F2A30824A2DAC4009209AA /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				524DB47523FA46D7009F6546 /* UIView+Anchor.swift */,
 				524DB47723FC0DFB009F6546 /* Constants.swift */,
 				52660CCF242452FB00EA8246 /* Notifications.swift */,
 				52F2A30924A2DAE4009209AA /* UserDefaults.swift */,
