@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 import CoreData
-
+import GoogleMobileAds
 
 protocol FavoriteDelegate {
 	func addFavorite(_ quote: Quote)
@@ -17,8 +17,18 @@ protocol FavoriteDelegate {
 	func removeFavorite(_ quote: Quote)
 }
 
-class QuoteViewController: UIViewController {
+class QuoteViewController: UIViewController, GADUnifiedNativeAdDelegate {
 	
+	/// The ad loader. You must keep a strong reference to the GADAdLoader during the ad loading
+	/// process.
+	var adLoader: GADAdLoader!
+
+	/// The native ad view that is being presented.
+	var nativeAdView: GADUnifiedNativeAdView!
+
+	/// The ad unit ID.
+	let adUnitID = "ca-app-pub-3940256099942544/3986624511"
+		
 	var quoteView = QuoteView()
 		
 	var quote: Quote = Constants.dummyQuote {
@@ -60,8 +70,51 @@ class QuoteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
+		guard let nibObjects = Bundle.main.loadNibNamed("NativeAdView", owner: nil, options: nil),
+		  let adView = nibObjects.first as? GADUnifiedNativeAdView else {
+			assert(false, "Could not load nib file for adView")
+		}
+		setAdView(adView)
+		loadAd()
 	}
 	
+	// MARK: Admob Config
+	func setAdView(_ view: GADUnifiedNativeAdView) {
+		// Remove the previous ad view.
+		nativeAdView = view
+		quoteView.nativeAdPlaceHolder.addSubview(nativeAdView)
+		nativeAdView.translatesAutoresizingMaskIntoConstraints = false
+		
+		// Layout constraints for positioning the native ad view to stretch the entire width and height
+		// of the nativeAdPlaceholder.
+		let viewDictionary = ["_nativeAdView": nativeAdView!]
+		self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[_nativeAdView]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: viewDictionary))
+		self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[_nativeAdView]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: viewDictionary))
+		
+		// native adview styling
+		nativeAdView.layer.cornerRadius = 16
+		nativeAdView.iconView?.layer.cornerRadius = 8
+		nativeAdView.callToActionView?.layer.cornerRadius = 8
+		nativeAdView.callToActionView?.clipsToBounds = true
+		nativeAdView.callToActionView?.backgroundColor = Constants.darkPurple
+	}
+	
+	/// Refreshes the native ad.
+	func loadAd() {
+		let adMediaOptions = GADNativeAdMediaAdLoaderOptions()
+		adMediaOptions.mediaAspectRatio = .square
+		
+		adLoader = GADAdLoader(adUnitID: adUnitID, rootViewController: self,
+							   adTypes: [ .unifiedNative ], options: [adMediaOptions])
+		adLoader.delegate = self
+		adLoader.load(GADRequest())
+	}
+	
+	func adLoader(_ adLoader: GADAdLoader, didFailToReceiveAdWithError error: GADRequestError) {
+		// The adLoader has finished loading ads, and a new request can be sent.
+	}
+	
+	// MARK: Fetch Quote
 	fileprivate func fetchQuote() {
 		NetworkManager.shared.fetchQuote(about: selectedCategory) { (res) in
 			switch res {
@@ -75,6 +128,7 @@ class QuoteViewController: UIViewController {
 		}
 	}
 	
+	// MARK: Button Actions
 	@objc func lookupAuthorButtonClicked() {
 		if let author = quote.author {
 			let safeURL = author.replacingOccurrences(of: " ", with: "+")
@@ -152,6 +206,34 @@ extension QuoteViewController {
 		} catch {
 			
 		}
+	}
+}
+
+// MARK: AdLoaderDelegate
+extension QuoteViewController: GADUnifiedNativeAdLoaderDelegate {
+	func adLoader(_ adLoader: GADAdLoader, didReceive nativeAd: GADUnifiedNativeAd) {
+		 nativeAdView.nativeAd = nativeAd
+		
+		// Set ourselves as the native ad delegate to be notified of native ad events.
+		nativeAd.delegate = self
+
+		// Populate the native ad view with the native ad assets.
+		// The headline and mediaContent are guaranteed to be present in every native ad.
+		(nativeAdView.headlineView as? UILabel)?.text = nativeAd.headline
+		
+		(nativeAdView.callToActionView as? UIButton)?.setTitle(nativeAd.callToAction, for: .normal)
+		(nativeAdView.callToActionView as? UIButton)?.titleEdgeInsets = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
+		(nativeAdView.callToActionView as? UIButton)?.titleLabel?.numberOfLines = 2
+		nativeAdView.callToActionView?.isHidden = nativeAd.callToAction == nil
+
+		(nativeAdView.iconView as? UIImageView)?.image = nativeAd.icon?.image
+		nativeAdView.iconView?.isHidden = nativeAd.icon == nil
+		
+		(nativeAdView.advertiserView as? UILabel)?.text = nativeAd.advertiser
+		nativeAdView.advertiserView?.isHidden = nativeAd.advertiser == nil
+		
+		// In order for the SDK to process touch events properly, user interaction should be disabled.
+		nativeAdView.callToActionView?.isUserInteractionEnabled = false
 	}
 }
 

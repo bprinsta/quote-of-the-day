@@ -35,6 +35,8 @@ class QuoteView: UIView {
 	// MARK: View Creation
 	let cardView = CardView()
 	
+	var nativeAdPlaceHolder = UIView()
+	
 	var dateLabel: UILabel = {
 		let label = UILabel()
 		label.font = UIFont(name: "Avenir-Book", size: 14)
@@ -114,6 +116,7 @@ class QuoteView: UIView {
 	}
 	
 	func addSubviews(){
+		self.addSubview(nativeAdPlaceHolder)
 		self.addSubview(cardView)
 		self.addSubview(dateLabel)
 		self.addSubview(logoImageView)
@@ -127,7 +130,10 @@ class QuoteView: UIView {
 	}
 	
 	func anchorSubviews() {
-		cardView.anchor(top: self.safeAreaLayoutGuide.topAnchor, leading: self.safeAreaLayoutGuide.leadingAnchor, bottom: self.safeAreaLayoutGuide.bottomAnchor, trailing: self.safeAreaLayoutGuide.trailingAnchor, padding: .init(top: 0, left: 12, bottom: 16, right: 12))
+		
+		nativeAdPlaceHolder.anchor(top: self.safeAreaLayoutGuide.topAnchor, leading: self.safeAreaLayoutGuide.leadingAnchor, bottom: nil, trailing: self.safeAreaLayoutGuide.trailingAnchor, padding: .init(top: 0, left: 12, bottom: 16, right: 12), size: .init(width: 0, height: 60))
+		
+		cardView.anchor(top: nativeAdPlaceHolder.bottomAnchor, leading: self.safeAreaLayoutGuide.leadingAnchor, bottom: self.safeAreaLayoutGuide.bottomAnchor, trailing: self.safeAreaLayoutGuide.trailingAnchor, padding: .init(top: 16, left: 12, bottom: 16, right: 12))
 		
 		dateLabel.anchor(top: cardView.topAnchor, leading: cardView.leadingAnchor, bottom: nil, trailing: cardView.trailingAnchor, padding: .init(top: 16, left: 32, bottom: 0, right: 32))
 		

@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import UserNotifications
+import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,8 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
 		notifications.notificationCenter.delegate = notifications
 		notifications.notificationRequest()
-		
 		notifications.scheduleNotification()
+		
+		GADMobileAds.sharedInstance().start(completionHandler: nil)
+		
 		return true
 	}
 

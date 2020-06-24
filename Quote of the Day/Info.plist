@@ -18,6 +18,8 @@
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-8648415116321033~2306325560</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict/>
