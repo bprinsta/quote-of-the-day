@@ -35,15 +35,9 @@ class Notifications: NSObject, UNUserNotificationCenterDelegate {
 		
 		var dateComponents = DateComponents(calendar: Calendar.current, hour: 9, minute: 0)
 		
-		if let time = UserDefaults.standard.string(forKey: "notificationTime") {
-			let dateFormatter = DateFormatter()
-			dateFormatter.dateFormat = "hh:mm"
-			if let date = dateFormatter.date(from: time) {
-				dateComponents = Calendar.current.dateComponents([.hour, .minute,], from: date)
-			}
+		if let date = UserDefaults.getDate() {
+			dateComponents = Calendar.current.dateComponents([.hour, .minute,], from: date)
 		}
-		
-		print(dateComponents)
 		
 		let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
 		
