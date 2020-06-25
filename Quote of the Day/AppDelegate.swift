@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		notifications.scheduleNotification()
 		
 		GADMobileAds.sharedInstance().start(completionHandler: nil)
+		GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = ["578c62352601eb1bf820fc71efb7c20d"]
 		
 		return true
 	}

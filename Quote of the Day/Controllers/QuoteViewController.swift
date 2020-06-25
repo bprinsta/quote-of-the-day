@@ -73,6 +73,7 @@ class QuoteViewController: UIViewController, GADUnifiedNativeAdDelegate {
 		guard let nibObjects = Bundle.main.loadNibNamed("NativeAdView", owner: nil, options: nil),
 		  let adView = nibObjects.first as? GADUnifiedNativeAdView else {
 			assert(false, "Could not load nib file for adView")
+			return
 		}
 		setAdView(adView)
 	}
